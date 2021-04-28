@@ -1,14 +1,16 @@
-package MP1;
+package MPx;
 
 import java.time.LocalDate;
+import java.time.Period;
 
-public abstract class Person extends ObjectPlus {
+public abstract class Person extends ObjectPlusPlus {
     private final String name;
     private final String surname;
     private final LocalDate dateOfBirth;
 
 
     public Person(String name, String surname, LocalDate dateOfBirth) {
+        super();
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
@@ -30,9 +32,9 @@ public abstract class Person extends ObjectPlus {
         return countAge(this.dateOfBirth);
     }
 
-    private int countAge(LocalDate dateOfBirth) {
+    private static int countAge(LocalDate dateOfBirth) {
         int yearOfBirth = dateOfBirth.getYear();
-        return LocalDate.now().getYear() - yearOfBirth;
+        return Period.between(LocalDate.ofEpochDay(yearOfBirth), dateOfBirth).getYears();
     }
 
 

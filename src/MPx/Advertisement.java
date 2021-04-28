@@ -1,17 +1,18 @@
-package MP1;
+package MPx;
 
+import javax.management.relation.Role;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-public class Advertisement implements Serializable {
+public class Advertisement extends ObjectPlusPlus implements Serializable {
     private String tittle;
     private String content;
-    private  Student studentsAuthor;
+//    private  Student studentsAuthor;
 
-    public Advertisement(String tittle, String content) {
+    public Advertisement(String tittle, String content,Student student) throws Exception {
         this.tittle = tittle;
         this.content = content;
+        student.addPart(Roles.PART,Roles.WHOLE,this);
     }
 
     public void setTittle(String tittle) {
@@ -22,9 +23,9 @@ public class Advertisement implements Serializable {
         this.content = content;
     }
 
-    public void setStudentsAuthor(Student studentsAuthor) {
-        this.studentsAuthor = studentsAuthor;
-    }
+//    public void setStudentsAuthor(Student studentsAuthor) {
+//        this.studentsAuthor = studentsAuthor;
+//    }
 
 
     public String getTittle() {
@@ -35,16 +36,16 @@ public class Advertisement implements Serializable {
         return content;
     }
 
-    public Student getStudentsAuthor() {
-        return studentsAuthor;
-    }
+//    public Student getStudentsAuthor() {
+//        return studentsAuthor;
+//    }
 
     @Override
     public String toString() {
         return "Advertisement{" +
                 "tittle='" + tittle + '\'' +
                 ", content='" + content + '\'' +
-                ", studentsAuthor=" + studentsAuthor.getName() +
+//                ", studentsAuthor=" + studentsAuthor.getName() +
                 '}';
     }
 

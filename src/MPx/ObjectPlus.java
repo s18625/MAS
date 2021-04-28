@@ -1,4 +1,4 @@
-package MP1;
+package MPx;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
