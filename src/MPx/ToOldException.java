@@ -1,4 +1,4 @@
-package MP1;
+package MPx;
 
 public class ToOldException extends RuntimeException {
     public ToOldException() {
