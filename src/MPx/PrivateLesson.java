@@ -26,21 +26,6 @@ public class PrivateLesson extends ObjectPlusPlus implements Serializable {
         this.addLink(Roles.COACH, Roles.PRIVATE_LESSON,coach);
     }
 
-//    public Coach getCoach() {
-//        return coach;
-//    }
-//
-//    public void setCoach(Coach coach) {
-//        this.coach = coach;
-//    }
-//
-//    public Student getStudent() {
-//        return student;
-//    }
-//
-//    public void setStudent(Student student) {
-//        this.student = student;
-//    }
 
     public Integer getGrade() {
         return grade;
