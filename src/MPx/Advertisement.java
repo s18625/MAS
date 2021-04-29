@@ -9,10 +9,19 @@ public class Advertisement extends ObjectPlusPlus implements Serializable {
     private String content;
 //    private  Student studentsAuthor;
 
-    public Advertisement(String tittle, String content,Student student) throws Exception {
+    public Advertisement(String tittle, String content,Student student){
         this.tittle = tittle;
         this.content = content;
-        student.addPart(Roles.PART,Roles.WHOLE,this);
+        createAPart(student,this);
+    }
+
+    public static void createAPart(Student student,Advertisement advertisement) {
+        try {
+            if (student == null) throw new Exception("required object - student");
+            student.addPart(Roles.PART,Roles.WHOLE,advertisement);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setTittle(String tittle) {

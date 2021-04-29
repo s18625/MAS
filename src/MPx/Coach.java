@@ -9,9 +9,6 @@ public class Coach extends Person {
     private Integer yearOfGraduationPJATK; //nullable
     private double hoursOfTeaching = 0;
     static int minimalYearOfBirth = 1980;
-//    private final List<PrivateLesson> privateLessonList = new ArrayList<>();
-//    private final Map<String,Subject> knownSubjects = new TreeMap<>(); // asocjajca kwalifikowana
-
 
     public Coach(String name, String surname, LocalDate dateOfBirth, Integer yearOfGraduationPJATK, double hourPayment) {
         super(name, surname, dateOfBirth);
@@ -19,12 +16,6 @@ public class Coach extends Person {
         this.yearOfGraduationPJATK = yearOfGraduationPJATK;
     }
 
-//    public void addSubjectQualified(Subject newSubject){
-//        if (!knownSubjects.containsKey(newSubject.getAcronym())){
-//            knownSubjects.put(newSubject.getAcronym(),newSubject);
-//            newSubject.addCoach(this);
-//        }
-//    }
 
     public Integer getYearOfGraduationPJATK() {
         return yearOfGraduationPJATK;
@@ -54,9 +45,7 @@ public class Coach extends Person {
         Coach.minimalYearOfBirth = minimalYearOfBirth;
     }
 
-//    public Map<String, Subject> getKnownSubjects() {
-//        return knownSubjects;
-//    }
+
 
     public String checkIfIsNull(Integer yearOfGraduationPJATK) {
         String result;
@@ -65,11 +54,6 @@ public class Coach extends Person {
         return result;
     }
 
-//    public void addPrivateLesson(PrivateLesson newPrivateLesson){
-//        if (!privateLessonList.contains(newPrivateLesson)){
-//            privateLessonList.add(newPrivateLesson);
-//        }
-//    }
 
     public void showSubjectByAcronym(String acronym) throws Exception {
         ObjectPlusPlus linkedObject = this.getLinkedObject(Roles.SUBJECT, acronym);

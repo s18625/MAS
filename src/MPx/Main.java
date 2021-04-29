@@ -147,7 +147,7 @@ public class Main {
 
         student3.addLink(Roles.HOBBY, Roles.STUDENT, hobby1Football);
         student3.addLink(Roles.HOBBY, Roles.STUDENT, hobby2skate);
-
+        student4.addLink(Roles.HOBBY, Roles.STUDENT, hobby1Football);
         student3.showLinks(Roles.HOBBY, System.out);
         hobby1Football.showLinks(Roles.STUDENT, System.out);
 
@@ -172,11 +172,11 @@ public class Main {
 
         System.out.println("Asocjacja kwalifikowana \n");
 
-        coach.addLink(Roles.SUBJECT, Roles.COACH, ppj, "PPJ");
-        coach.addLink(Roles.SUBJECT, Roles.COACH, mad, "MAD");
+        coach.addLink(Roles.SUBJECT, Roles.COACH, ppj, ppj.getAcronym());
+        coach.addLink(Roles.SUBJECT, Roles.COACH, mad, mad.getAcronym());
 
-        coach.showSubjectByAcronym("MAD");
-        coach.showLinks(Roles.SUBJECT, System.out);
+        coach.showSubjectByAcronym(mad.getAcronym());
+
 
         printBreakBlock();
 
@@ -194,7 +194,31 @@ public class Main {
 
         printBreakBlock();
 
-//        ===================================================================
+
+        //==============================================================================================================
+        //  sparwdzenie czy dziala usuwanie dla kompozycji
+        //==============================================================================================================
+
+        var students = ObjectPlus.getExtentOfClass(Student.class);
+        students.forEach(System.out::println);
+        var ads = ObjectPlus.getExtentOfClass(Advertisement.class);
+        ads.forEach(System.out::println);
+        student3.deleteObject(student3,Roles.PART);
+        System.out.println("///////////////////////");
+        var students2 = ObjectPlus.getExtentOfClass(Student.class);
+        students2.forEach(System.out::println);
+        var ads2 = ObjectPlus.getExtentOfClass(Advertisement.class);
+        ads2.forEach(System.out::println);
+        System.out.println("///////////////////////");
+        student3.showLinks(Roles.PART,System.out);
+        System.out.println("///////////////////////");
+        advertisement1.showLinks(Roles.WHOLE,System.out);
+
+        //==============================================================================================================
+        //  MP3
+        //==============================================================================================================
+
+
 
     }
 

@@ -42,4 +42,8 @@ public abstract class ObjectPlus implements Serializable {
         );
     }
 
+    protected void removeObjectFromExtent() throws ClassNotFoundException {
+        getExtentOfClass(this.getClass()).remove(this);
+    }
+
 }
