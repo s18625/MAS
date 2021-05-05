@@ -67,6 +67,10 @@ public abstract class ObjectPlusPlus extends ObjectPlus implements Serializable 
         }
     }
 
+    public boolean containTheRole(String roleName){
+        return links.containsKey(roleName);
+    }
+
     public ObjectPlusPlus getLinkedObject(String roleName, Object qualifier) throws Exception {
         Map<Object, ObjectPlusPlus> objectLinks;
         if (!links.containsKey(roleName)) {
@@ -85,7 +89,6 @@ public abstract class ObjectPlusPlus extends ObjectPlus implements Serializable 
             objectLinks = object.getLinks(role);
         } catch (Exception ignored) {
         }
-//        assert objectLinks != null;
         if (objectLinks != null){
             for (var part : objectLinks
             ) {

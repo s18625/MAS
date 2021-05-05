@@ -9,4 +9,8 @@ public class Roles {
     public static final String PART = "part";
     public static final String WHOLE = "whole";
     public static final String ADVERTISEMENT = "advertisement";
+    public static final String PERSON = "person";
+    public static final String TYPE_NAME_THEORETICAL = "theoreticalPrivateLesson";
+    public static final String TYPE_NAME_PRACTICAL = "practicallPrivateLesson";
+
 }

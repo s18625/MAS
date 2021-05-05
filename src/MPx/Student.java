@@ -1,12 +1,11 @@
 package MPx;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Comparator;
 
-public class Student extends Person {
+public class Student extends Person implements IStudent {
     private String indexNumber;
-//    private final List<Advertisement> advertisements = new ArrayList<>();
-//    private final List<PrivateLesson> privateLessonList = new ArrayList<>();
 
     public Student(String name, String surname, LocalDate dateOfBirth) {
         super(name, surname, dateOfBirth);
@@ -17,40 +16,39 @@ public class Student extends Person {
         this.indexNumber = indexNumber;
     }
 
+    @Override
+    Person getOtherParticipantPrivateLesson(PrivateLesson privateLesson) throws Exception {
+        if (privateLesson.getStudent() != this) throw new Exception("this student ia not participant");
+        return privateLesson.getCoach();
+    }
 
+    public Student(Person person, String indexNumber) {
+        super(person.getName(), person.getSurname(), person.getDateOfBirth());
+        this.indexNumber = indexNumber;
+    }
+
+
+    @Override
     public String getIndexNumber() {
         return indexNumber;
     }
 
-
-    public static Student  findTheOldestStudent() throws ClassNotFoundException {
-        var students = ObjectPlus.getExtentOfClass(Student.class);
-        return ObjectPlus.getExtentOfClass(Student.class).stream().max(Comparator.comparing(Student::getAge)).get();
-
+    @Override
+    public void rateTheCoach(Coach coach, double rating) throws Exception {
+        if (rating<0 || rating>10) throw  new Exception("ratign should be between 0-10");
+        coach.setRating(rating);
     }
 
+    static Student findTheOldestStudent() throws ClassNotFoundException {
+        var students = ObjectPlus.getExtentOfClass(Student.class);
+        return ObjectPlus.getExtentOfClass(Student.class).stream().filter(student -> student.getDateOfBirth() != null).max(Comparator.comparing(Student::getAge)).get();
 
-    //===  MP2  ========================================================================================================
-
-//    public void addAdvertisement(Advertisement newAdvertisement) {
-//        if (!advertisements.contains(newAdvertisement)) {
-//            newAdvertisement.setStudentsAuthor(this);
-//            advertisements.add(newAdvertisement);
-//        }
-//    }
-//
-//    public void addPrivateLesson(PrivateLesson newPrivateLesson) {
-//        if (!privateLessonList.contains(newPrivateLesson)) {
-//            privateLessonList.add(newPrivateLesson);
-//        }
-//    }
-
+    }
 
     @Override
     public String toString() {
         return "Student{" + super.toString() +
                 ", indexNumber='" + indexNumber + '\'' +
-//                ", advertisements=" + advertisements +
                 '}';
     }
 }
