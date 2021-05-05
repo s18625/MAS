@@ -15,6 +15,31 @@ public abstract class Person extends ObjectPlusPlus {
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
     }
+    public Person(String name, String surname, LocalDate dateOfBirth, String indexNumber) {
+        super();
+        this.name = name;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        addStudent(indexNumber);
+    }
+    public Person(String name, String surname, LocalDate dateOfBirth, Integer yearOfGraduationPJATK, double hourPayment) {
+        super();
+        this.name = name;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        addCoach(yearOfGraduationPJATK,hourPayment);
+    }
+
+    public void addStudent(String indexNumber){
+        Student student = new Student(name,surname,dateOfBirth,indexNumber);
+        this.addLink(Roles.STUDENT,Roles.PERSON,student);
+    }
+
+    public void addCoach(Integer yearOfGraduationPJATK, double hourPayment){
+        Coach coach = new Coach(name,surname,dateOfBirth,yearOfGraduationPJATK,hourPayment);
+        this.addLink(Roles.COACH,Roles.PERSON,coach);
+    }
+
 
     public String getName() {
         return name;
@@ -37,6 +62,7 @@ public abstract class Person extends ObjectPlusPlus {
         return Period.between(LocalDate.ofEpochDay(yearOfBirth), dateOfBirth).getYears();
     }
 
+    abstract Person getOtherParticipantPrivateLesson(PrivateLesson privateLesson) throws Exception;
 
     @Override
     public String toString() {

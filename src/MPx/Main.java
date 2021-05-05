@@ -1,5 +1,6 @@
 package MPx;
 
+import java.net.URL;
 import java.time.LocalDate;
 
 public class Main {
@@ -127,98 +128,173 @@ public class Main {
         //   MP2
         //==============================================================================================================
 
-        var student3 = new Student("student3", "mp2", LocalDate.of(2000, 3, 4));
-        var student4 = new Student("student4", "mp2", LocalDate.of(1000, 11, 7));
-        var coach = new Coach("przykładowy", "coach", LocalDate.of(2000, 1, 1), 2020, 30.0);
-        var coach3 = new Coach("coach3", "mp2", LocalDate.of(1998, 12, 2), 2020, 33);
-        Hobby hobby1Football = new Hobby("football");
-        Hobby hobby2skate = new Hobby("skateboarding");
-        Subject ppj = new Subject("PPJ", "Podstawy Programowania w Javie");
-        Subject mad = new Subject("MAD", "Matemetytka Dyskretna");
-        Subject grk = new Subject("GRK", "Grafika Komputerowa");
-
-        printBreakBlock();
-
-        //==============================================================================================================
-        //   Asoscjacja "zwykla"
-        //==============================================================================================================
-
-        System.out.println("Asocjacja zwykła  \n");
-
-        student3.addLink(Roles.HOBBY, Roles.STUDENT, hobby1Football);
-        student3.addLink(Roles.HOBBY, Roles.STUDENT, hobby2skate);
-        student4.addLink(Roles.HOBBY, Roles.STUDENT, hobby1Football);
-        student3.showLinks(Roles.HOBBY, System.out);
-        hobby1Football.showLinks(Roles.STUDENT, System.out);
-
-        printBreakBlock();
-
-        //==============================================================================================================
-        //  Asoscjacja z atrybutem
-        //==============================================================================================================
-
-        System.out.println("Asocjacja z atrybutem \n");
-
-        var privateLesson = new PrivateLesson(null, 25.0, 1.0, LocalDate.now(), coach3, student3);
-
-        privateLesson.showLinks(Roles.STUDENT, System.out);
-        privateLesson.showLinks(Roles.COACH, System.out);
-
-        printBreakBlock();
-
-        //==============================================================================================================
-        //  Asoscjacja kwalifikowana
-        //==============================================================================================================
-
-        System.out.println("Asocjacja kwalifikowana \n");
-
-        coach.addLink(Roles.SUBJECT, Roles.COACH, ppj, ppj.getAcronym());
-        coach.addLink(Roles.SUBJECT, Roles.COACH, mad, mad.getAcronym());
-
-        coach.showSubjectByAcronym(mad.getAcronym());
-
-
-        printBreakBlock();
-
-        //==============================================================================================================
-        //  kompozycja
-        //==============================================================================================================
-
-        System.out.println("Asocjacja - kompozycja \n");
-
-        Advertisement advertisement1 = new Advertisement("tytul1", "content1", student3);
-        Advertisement advertisement2 = new Advertisement("tytul2", "content2", student3);
-
-        advertisement1.showLinks(Roles.WHOLE, System.out);
-        student3.showLinks(Roles.PART, System.out);
-
-        printBreakBlock();
+//        var student3 = new Student("student3", "mp2", LocalDate.of(2000, 3, 4));
+//        var student4 = new Student("student4", "mp2", LocalDate.of(1000, 11, 7));
+//        var coach = new Coach("przykładowy", "coach", LocalDate.of(2000, 1, 1), 2020, 30.0);
+//        var coach3 = new Coach("coach3", "mp2", LocalDate.of(1998, 12, 2), 2020, 33);
+//        Hobby hobby1Football = new Hobby("football");
+//        Hobby hobby2skate = new Hobby("skateboarding");
+//        Subject ppj = new Subject("PPJ", "Podstawy Programowania w Javie");
+//        Subject mad = new Subject("MAD", "Matemetytka Dyskretna");
+//        Subject grk = new Subject("GRK", "Grafika Komputerowa");
+//
+//        printBreakBlock();
+//
+//        //==============================================================================================================
+//        //   Asoscjacja "zwykla"
+//        //==============================================================================================================
+//
+//        System.out.println("Asocjacja zwykła  \n");
+//
+//        student3.addLink(Roles.HOBBY, Roles.STUDENT, hobby1Football);
+//        student3.addLink(Roles.HOBBY, Roles.STUDENT, hobby2skate);
+//        student4.addLink(Roles.HOBBY, Roles.STUDENT, hobby1Football);
+//        student3.showLinks(Roles.HOBBY, System.out);
+//        hobby1Football.showLinks(Roles.STUDENT, System.out);
+//
+//        printBreakBlock();
+//
+//        //==============================================================================================================
+//        //  Asoscjacja z atrybutem
+//        //==============================================================================================================
+//
+//        System.out.println("Asocjacja z atrybutem \n");
+//
+//        var privateLesson = new PrivateLesson(null, 25.0, 1.0, LocalDate.now(), coach3, student3);
+//
+//        privateLesson.showLinks(Roles.STUDENT, System.out);
+//        privateLesson.showLinks(Roles.COACH, System.out);
+//
+//        printBreakBlock();
+//
+//        //==============================================================================================================
+//        //  Asoscjacja kwalifikowana
+//        //==============================================================================================================
+//
+//        System.out.println("Asocjacja kwalifikowana \n");
+//
+//        coach.addLink(Roles.SUBJECT, Roles.COACH, ppj, ppj.getAcronym());
+//        coach.addLink(Roles.SUBJECT, Roles.COACH, mad, mad.getAcronym());
+//
+//        coach.showSubjectByAcronym(mad.getAcronym());
+//
+//
+//        printBreakBlock();
+//
+//        //==============================================================================================================
+//        //  kompozycja
+//        //==============================================================================================================
+//
+//        System.out.println("Asocjacja - kompozycja \n");
+//
+//        Advertisement advertisement1 = new Advertisement("tytul1", "content1", student3);
+//        Advertisement advertisement2 = new Advertisement("tytul2", "content2", student3);
+//
+//        advertisement1.showLinks(Roles.WHOLE, System.out);
+//        student3.showLinks(Roles.PART, System.out);
+//
+//        printBreakBlock();
 
 
         //==============================================================================================================
         //  sparwdzenie czy dziala usuwanie dla kompozycji
         //==============================================================================================================
 
-        var students = ObjectPlus.getExtentOfClass(Student.class);
-        students.forEach(System.out::println);
-        var ads = ObjectPlus.getExtentOfClass(Advertisement.class);
-        ads.forEach(System.out::println);
-        student3.deleteObject(student3,Roles.PART);
-        System.out.println("///////////////////////");
-        var students2 = ObjectPlus.getExtentOfClass(Student.class);
-        students2.forEach(System.out::println);
-        var ads2 = ObjectPlus.getExtentOfClass(Advertisement.class);
-        ads2.forEach(System.out::println);
-        System.out.println("///////////////////////");
-        student3.showLinks(Roles.PART,System.out);
-        System.out.println("///////////////////////");
-        advertisement1.showLinks(Roles.WHOLE,System.out);
+//        var students = ObjectPlus.getExtentOfClass(Student.class);
+//        students.forEach(System.out::println);
+//        var ads = ObjectPlus.getExtentOfClass(Advertisement.class);
+//        ads.forEach(System.out::println);
+//        student3.deleteObject(student3,Roles.PART);
+//        System.out.println("///////////////////////");
+//        var students2 = ObjectPlus.getExtentOfClass(Student.class);
+//        students2.forEach(System.out::println);
+//        var ads2 = ObjectPlus.getExtentOfClass(Advertisement.class);
+//        ads2.forEach(System.out::println);
+//        System.out.println("///////////////////////");
+//        student3.showLinks(Roles.PART,System.out);
+//        System.out.println("///////////////////////");
+//        advertisement1.showLinks(Roles.WHOLE,System.out);
 
         //==============================================================================================================
         //  MP3
         //==============================================================================================================
 
+        var coachMP3 = new Coach("kolczMP3", "coach", LocalDate.of(2000, 1, 1), 2020, 30.0);
+        var studentMP3 = new Student("studentmp3", "mp2", LocalDate.of(2000, 3, 4));
+        var privateLesson1 = new PrivateLesson(null, 25.0, 1.0, LocalDate.now(), coachMP3, studentMP3, null, null);
+        studentMP3.rateTheCoach(coachMP3, 3.9);
+        studentMP3.rateTheCoach(coachMP3, 9.9);
 
+        printBreakBlock();
+
+        //==============================================================================================================
+        //  polimofriczne wołanie metod
+        //==============================================================================================================
+
+        System.out.println("polimorficzne wołanie metod \n");
+
+        var s1 = coachMP3.getOtherParticipantPrivateLesson(privateLesson1);
+        var s2 = studentMP3.getOtherParticipantPrivateLesson(privateLesson1);
+
+        System.out.println(s1);
+        System.out.println(s2);
+
+        printBreakBlock();
+
+
+        //==============================================================================================================
+        //  overlapping
+        //==============================================================================================================
+
+        System.out.println("overlapping \n");
+
+        PrivateLesson privateLesson = new PrivateLesson(null, 34.0, 1.5, LocalDate.now(), coachMP3, studentMP3, new URL("https://linkToLecture"), "linkToRepository");
+        System.out.println(privateLesson);
+
+        System.out.println(privateLesson.getLinkToLecture());
+        System.out.println(privateLesson.getLinkToRepository());
+
+
+//        privateLesson.showLinks(Roles.TYPE_NAME_PRACTICAL, System.out);
+//        privateLesson.showLinks(Roles.TYPE_NAME_THEORETICAL, System.out);
+
+        printBreakBlock();
+
+        //==============================================================================================================
+        //  wielodziedziczenie
+        //==============================================================================================================
+        System.out.println("wielodziedziczenie \n");
+
+        StudyingCoach studyingCoach = new StudyingCoach("sc", "scSurname", LocalDate.of(2001, 2, 2), 2019, 20.0, "s1999");
+        System.out.println(studyingCoach);
+
+        printBreakBlock();
+
+        //==============================================================================================================
+        //  wieloaspektowe
+        //==============================================================================================================
+
+        System.out.println("wieloaspektowe \n");
+
+
+        Mode onlinePrivateLesson = new OnlinePrivateLesson("Teams", privateLesson);
+        System.out.println(privateLesson.getPlatformName());
+        privateLesson.showLinks(Roles.PART, System.out);
+
+        printBreakBlock();
+
+        //==============================================================================================================
+        //  dynamiczne
+        //==============================================================================================================
+
+        System.out.println("dynamiczne \n");
+
+        Person dynamicznyUzytkownik = new Student("studentmp3", "mp3", LocalDate.of(2000, 11, 7));
+        System.out.println(dynamicznyUzytkownik);
+        dynamicznyUzytkownik = new Coach(dynamicznyUzytkownik, null, 30.0);
+        System.out.println(dynamicznyUzytkownik);
+
+        printBreakBlock();
 
     }
 

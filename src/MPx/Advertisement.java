@@ -7,7 +7,6 @@ import java.util.List;
 public class Advertisement extends ObjectPlusPlus implements Serializable {
     private String tittle;
     private String content;
-//    private  Student studentsAuthor;
 
     public Advertisement(String tittle, String content,Student student){
         this.tittle = tittle;
@@ -32,9 +31,6 @@ public class Advertisement extends ObjectPlusPlus implements Serializable {
         this.content = content;
     }
 
-//    public void setStudentsAuthor(Student studentsAuthor) {
-//        this.studentsAuthor = studentsAuthor;
-//    }
 
 
     public String getTittle() {
@@ -45,9 +41,6 @@ public class Advertisement extends ObjectPlusPlus implements Serializable {
         return content;
     }
 
-//    public Student getStudentsAuthor() {
-//        return studentsAuthor;
-//    }
 
     @Override
     public String toString() {
