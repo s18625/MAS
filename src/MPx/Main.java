@@ -233,11 +233,11 @@ public class Main {
 
         System.out.println("polimorficzne wołanie metod \n");
 
-        var s1 = coachMP3.getOtherParticipantPrivateLesson(privateLesson1);
-        var s2 = studentMP3.getOtherParticipantPrivateLesson(privateLesson1);
+        var p1 = coachMP3.getOtherParticipantPrivateLesson(privateLesson1);
+        var p2 = studentMP3.getOtherParticipantPrivateLesson(privateLesson1);
 
-        System.out.println(s1);
-        System.out.println(s2);
+        System.out.println(p1);
+        System.out.println(p2);
 
         printBreakBlock();
 
@@ -267,6 +267,7 @@ public class Main {
 
         StudyingCoach studyingCoach = new StudyingCoach("sc", "scSurname", LocalDate.of(2001, 2, 2), 2019, 20.0, "s1999");
         System.out.println(studyingCoach);
+//        studyingCoach.rateTheCoach(coachMP3,10.0);
 
         printBreakBlock();
 
@@ -278,7 +279,9 @@ public class Main {
 
 
         Mode onlinePrivateLesson = new OnlinePrivateLesson("Teams", privateLesson);
+//        Mode s = new StationaryPrivateLesson("d",privateLesson);
         System.out.println(privateLesson.getPlatformName());
+
         privateLesson.showLinks(Roles.PART, System.out);
 
         printBreakBlock();
@@ -290,9 +293,9 @@ public class Main {
         System.out.println("dynamiczne \n");
 
         Person dynamicznyUzytkownik = new Student("studentmp3", "mp3", LocalDate.of(2000, 11, 7));
-        System.out.println(dynamicznyUzytkownik);
+        System.out.println("student? "+dynamicznyUzytkownik);
         dynamicznyUzytkownik = new Coach(dynamicznyUzytkownik, null, 30.0);
-        System.out.println(dynamicznyUzytkownik);
+        System.out.println("coach? "+dynamicznyUzytkownik);
 
         printBreakBlock();
 
