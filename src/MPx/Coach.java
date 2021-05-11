@@ -12,17 +12,15 @@ public class Coach extends Person {
     double hourPayment;
     private double rating;
     private int totalRaters;
+    private static double maximalHourPayment =200.0;
 
-    public Coach(String name, String surname, LocalDate dateOfBirth, Integer yearOfGraduationPJATK, double hourPayment) {
+    public Coach(String name, String surname, LocalDate dateOfBirth, Integer yearOfGraduationPJATK, double hourPayment) throws Exception {
         super(name, surname, dateOfBirth);
-        this.hourPayment = hourPayment;
         if (dateOfBirth != null && dateOfBirth.getYear() < minimalYearOfBirth)
             throw new ToOldException("u are too old to be our coach");
+        setHourPayment(hourPayment);
         this.yearOfGraduationPJATK = yearOfGraduationPJATK;
     }
-
-
-
 
     public Coach(Person person, Integer yearOfGraduationPJATK, double hourPayment) {
         super(person.getName(), person.getSurname(), person.getDateOfBirth());
@@ -32,6 +30,9 @@ public class Coach extends Person {
         this.yearOfGraduationPJATK = yearOfGraduationPJATK;
     }
 
+    public static void setMaximalHourPayment(double maximalHourPayment) {
+        Coach.maximalHourPayment = maximalHourPayment;
+    }
 
     public Integer getYearOfGraduationPJATK() {
         return yearOfGraduationPJATK;
@@ -65,7 +66,10 @@ public class Coach extends Person {
         return hourPayment;
     }
 
-    public void setHourPayment(double hourPayment) {
+    public void setHourPayment(double hourPayment) throws Exception {
+        if (hourPayment > 200.0){
+            throw  new Exception(String.format("your hour payment - %.2fzł is to high by %.2fzł, maximal hour payment is %.2fzł",hourPayment,hourPayment-maximalHourPayment,maximalHourPayment));
+        };
         this.hourPayment = hourPayment;
     }
 

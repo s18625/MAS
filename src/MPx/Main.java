@@ -1,6 +1,6 @@
 package MPx;
 
-import java.net.URL;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 public class Main {
@@ -218,86 +218,193 @@ public class Main {
         //==============================================================================================================
         //  MP3
         //==============================================================================================================
+//
+//        var coachMP3 = new Coach("kolczMP3", "coach", LocalDate.of(2000, 1, 1), 2020, 30.0);
+//        var studentMP3 = new Student("studentmp3", "mp2", LocalDate.of(2000, 3, 4));
+//        var privateLesson1 = new PrivateLesson(null, 25.0, 1.0, LocalDate.now(), coachMP3, studentMP3, null, null);
+//        studentMP3.rateTheCoach(coachMP3, 3.9);
+//        studentMP3.rateTheCoach(coachMP3, 9.9);
+//
+//        printBreakBlock();
+//
+//        //==============================================================================================================
+//        //  polimofriczne wołanie metod
+//        //==============================================================================================================
+//
+//        System.out.println("polimorficzne wołanie metod \n");
+//
+//        var p1 = coachMP3.getOtherParticipantPrivateLesson(privateLesson1);
+//        var p2 = studentMP3.getOtherParticipantPrivateLesson(privateLesson1);
+//
+//        System.out.println(p1);
+//        System.out.println(p2);
+//
+//        printBreakBlock();
+//
+//
+//        //==============================================================================================================
+//        //  overlapping
+//        //==============================================================================================================
+//
+//        System.out.println("overlapping \n");
+//
+//        PrivateLesson privateLesson = new PrivateLesson(null, 34.0, 1.5, LocalDate.now(), coachMP3, studentMP3, new URL("https://linkToLecture"), "linkToRepository");
+//        System.out.println(privateLesson);
+//
+//        System.out.println(privateLesson.getLinkToLecture());
+//        System.out.println(privateLesson.getLinkToRepository());
+//
+//
+////        privateLesson.showLinks(Roles.TYPE_NAME_PRACTICAL, System.out);
+////        privateLesson.showLinks(Roles.TYPE_NAME_THEORETICAL, System.out);
+//
+//        printBreakBlock();
+//
+//        //==============================================================================================================
+//        //  wielodziedziczenie
+//        //==============================================================================================================
+//        System.out.println("wielodziedziczenie \n");
+//
+//        StudyingCoach studyingCoach = new StudyingCoach("sc", "scSurname", LocalDate.of(2001, 2, 2), 2019, 20.0, "s1999");
+//        System.out.println(studyingCoach);
+////        studyingCoach.rateTheCoach(coachMP3,10.0);
+//
+//        printBreakBlock();
+//
+//        //==============================================================================================================
+//        //  wieloaspektowe
+//        //==============================================================================================================
+//
+//        System.out.println("wieloaspektowe \n");
+//
+//
+//        Mode onlinePrivateLesson = new OnlinePrivateLesson("Teams", privateLesson);
+////        Mode s = new StationaryPrivateLesson("d",privateLesson);
+//        System.out.println(privateLesson.getPlatformName());
+//
+//        privateLesson.showLinks(Roles.PART, System.out);
+//
+//        printBreakBlock();
+//
+//        //==============================================================================================================
+//        //  dynamiczne
+//        //==============================================================================================================
+//
+//        System.out.println("dynamiczne \n");
+//
+//        Person dynamicznyUzytkownik = new Student("studentmp3", "mp3", LocalDate.of(2000, 11, 7));
+//        System.out.println("student? "+dynamicznyUzytkownik);
+//        dynamicznyUzytkownik = new Coach(dynamicznyUzytkownik, null, 30.0);
+//        System.out.println("coach? "+dynamicznyUzytkownik);
+//
+//        printBreakBlock();
 
-        var coachMP3 = new Coach("kolczMP3", "coach", LocalDate.of(2000, 1, 1), 2020, 30.0);
-        var studentMP3 = new Student("studentmp3", "mp2", LocalDate.of(2000, 3, 4));
-        var privateLesson1 = new PrivateLesson(null, 25.0, 1.0, LocalDate.now(), coachMP3, studentMP3, null, null);
-        studentMP3.rateTheCoach(coachMP3, 3.9);
-        studentMP3.rateTheCoach(coachMP3, 9.9);
+        //==============================================================================================================
+        //  MP4
+        //==============================================================================================================
 
         printBreakBlock();
 
         //==============================================================================================================
-        //  polimofriczne wołanie metod
+        //  ograniczenie atrybutu
         //==============================================================================================================
 
-        System.out.println("polimorficzne wołanie metod \n");
+        System.out.println("ograniczenie atrybutu \n");
 
-        var p1 = coachMP3.getOtherParticipantPrivateLesson(privateLesson1);
-        var p2 = studentMP3.getOtherParticipantPrivateLesson(privateLesson1);
+        var coachMP4OgraniczenieAtrybutu = new Coach("kolczMP4", "coach", LocalDate.of(2000, 1, 1), 2020, 23.0);
+//        coachMP4OgraniczenieAtrybutu.setHourPayment(300);
 
-        System.out.println(p1);
-        System.out.println(p2);
+        printBreakBlock();
+
+        //==============================================================================================================
+        //  ograniczenie unique
+        //==============================================================================================================
+
+        System.out.println("ograniczenie unique \n");
+
+        var studentMP4unique = new Student("studentmp4", "mp4", LocalDate.of(2000, 3, 4),"s18625");
+        var studentMP4unique2 = new Student("studentmp4", "mp4", LocalDate.of(2000, 3, 4),"s18626");
+
+        printBreakBlock();
+
+        //==============================================================================================================
+        //  ograniczenie subset
+        //==============================================================================================================
+
+        System.out.println("ograniczenie subset \n");
+
+        Subject ppj = new Subject("PPJ", "Podstawy Programowania w Javie");
+
+        coachMP4OgraniczenieAtrybutu.addLink(Roles.PASS, Roles.IS_PASSED, ppj);
+        coachMP4OgraniczenieAtrybutu.addLink_subset(Roles.TEACH, Roles.IS_TEACHING_BY, Roles.PASS,ppj);
+
+        coachMP4OgraniczenieAtrybutu.showLinks(Roles.PASS,System.out);
+        coachMP4OgraniczenieAtrybutu.showLinks(Roles.TEACH,System.out);
 
         printBreakBlock();
 
 
         //==============================================================================================================
-        //  overlapping
+        //  ograniczenie ordered
         //==============================================================================================================
 
-        System.out.println("overlapping \n");
+        System.out.println("ograniczenie ordered \n");
 
-        PrivateLesson privateLesson = new PrivateLesson(null, 34.0, 1.5, LocalDate.now(), coachMP3, studentMP3, new URL("https://linkToLecture"), "linkToRepository");
-        System.out.println(privateLesson);
-
-        System.out.println(privateLesson.getLinkToLecture());
-        System.out.println(privateLesson.getLinkToRepository());
-
-
-//        privateLesson.showLinks(Roles.TYPE_NAME_PRACTICAL, System.out);
-//        privateLesson.showLinks(Roles.TYPE_NAME_THEORETICAL, System.out);
+        var extent = ObjectPlus.getExtentOfClass(Student.class);
+        for (Student s: extent
+             ) {
+            System.out.println(s);
+        }
 
         printBreakBlock();
 
         //==============================================================================================================
-        //  wielodziedziczenie
+        //  ograniczenie bag
         //==============================================================================================================
-        System.out.println("wielodziedziczenie \n");
 
-        StudyingCoach studyingCoach = new StudyingCoach("sc", "scSurname", LocalDate.of(2001, 2, 2), 2019, 20.0, "s1999");
-        System.out.println(studyingCoach);
-//        studyingCoach.rateTheCoach(coachMP3,10.0);
+        System.out.println("ograniczenie bag \n");
+
+        var privateLesson = new PrivateLesson(null, 25.0, 1.0, LocalDate.now(), coachMP4OgraniczenieAtrybutu, studentMP4unique,null,null);
+        var privateLesson2 = new PrivateLesson(null, 25.0, 1.0, LocalDate.now(), coachMP4OgraniczenieAtrybutu, studentMP4unique,null,null);
+
+        privateLesson.showLinks(Roles.STUDENT, System.out);
+        privateLesson.showLinks(Roles.COACH, System.out);
+
+        privateLesson2.showLinks(Roles.STUDENT, System.out);
+        privateLesson2.showLinks(Roles.COACH, System.out);
 
         printBreakBlock();
 
         //==============================================================================================================
-        //  wieloaspektowe
+        //  ograniczenie Xor
         //==============================================================================================================
 
-        System.out.println("wieloaspektowe \n");
+        System.out.println("ograniczenie Xor \n");
 
+        Catholicism catholicism = Catholicism.getInstance("Francesco");
+        Islam islam = Islam.getInstanceOfIslam(new BigInteger("16000000000"));
 
-        Mode onlinePrivateLesson = new OnlinePrivateLesson("Teams", privateLesson);
-//        Mode s = new StationaryPrivateLesson("d",privateLesson);
-        System.out.println(privateLesson.getPlatformName());
-
-        privateLesson.showLinks(Roles.PART, System.out);
+        studentMP4unique.addLinkXor(Roles.PROFESS,Roles.IS_PROFESSED_BY,catholicism);
+//        studentMP4unique.addLinkXor(Roles.PROFESS,Roles.IS_PROFESSED_BY,islam);
 
         printBreakBlock();
 
+
         //==============================================================================================================
-        //  dynamiczne
+        //  ograniczenie wlasne
         //==============================================================================================================
 
-        System.out.println("dynamiczne \n");
+        System.out.println("ograniczenie wlasne \n");
 
-        Person dynamicznyUzytkownik = new Student("studentmp3", "mp3", LocalDate.of(2000, 11, 7));
-        System.out.println("student? "+dynamicznyUzytkownik);
-        dynamicznyUzytkownik = new Coach(dynamicznyUzytkownik, null, 30.0);
-        System.out.println("coach? "+dynamicznyUzytkownik);
+        Hobby a = new Hobby("a");
+        Hobby b = new Hobby("b");
+        Hobby c = new Hobby("c");
+        Hobby d = new Hobby("d");
 
-        printBreakBlock();
+        studentMP4unique.addLink(Roles.HOBBY,Roles.STUDENT,a);
+        studentMP4unique.addLink(Roles.HOBBY,Roles.STUDENT,b);
+        studentMP4unique.addLink(Roles.HOBBY,Roles.STUDENT,c);
+//        studentMP4unique.addLink(Roles.HOBBY,Roles.STUDENT,d);
 
     }
 
