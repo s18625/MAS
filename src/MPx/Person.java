@@ -3,7 +3,7 @@ package MPx;
 import java.time.LocalDate;
 import java.time.Period;
 
-public abstract class Person extends ObjectPlusPlus {
+public abstract class Person extends ObjectPlus4 {
     private final String name;
     private final String surname;
     private final LocalDate dateOfBirth;
@@ -15,14 +15,14 @@ public abstract class Person extends ObjectPlusPlus {
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
     }
-    public Person(String name, String surname, LocalDate dateOfBirth, String indexNumber) {
+    public Person(String name, String surname, LocalDate dateOfBirth, String indexNumber) throws Exception {
         super();
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
         addStudent(indexNumber);
     }
-    public Person(String name, String surname, LocalDate dateOfBirth, Integer yearOfGraduationPJATK, double hourPayment) {
+    public Person(String name, String surname, LocalDate dateOfBirth, Integer yearOfGraduationPJATK, double hourPayment) throws Exception {
         super();
         this.name = name;
         this.surname = surname;
@@ -30,12 +30,12 @@ public abstract class Person extends ObjectPlusPlus {
         addCoach(yearOfGraduationPJATK,hourPayment);
     }
 
-    public void addStudent(String indexNumber){
+    public void addStudent(String indexNumber) throws Exception {
         Student student = new Student(name,surname,dateOfBirth,indexNumber);
         this.addLink(Roles.STUDENT,Roles.PERSON,student);
     }
 
-    public void addCoach(Integer yearOfGraduationPJATK, double hourPayment){
+    public void addCoach(Integer yearOfGraduationPJATK, double hourPayment) throws Exception {
         Coach coach = new Coach(name,surname,dateOfBirth,yearOfGraduationPJATK,hourPayment);
         this.addLink(Roles.COACH,Roles.PERSON,coach);
     }

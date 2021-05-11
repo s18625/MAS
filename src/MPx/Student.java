@@ -3,17 +3,28 @@ package MPx;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Student extends Person implements IStudent {
+    private static final Set<String> allIndexNumbers = new HashSet<>() {
+    };
     private String indexNumber;
+    private int maxHobbyNumber = 3;
 
     public Student(String name, String surname, LocalDate dateOfBirth) {
         super(name, surname, dateOfBirth);
     }
 
-    public Student(String name, String surname, LocalDate dateOfBirth, String indexNumber) {
+    public Student(String name, String surname, LocalDate dateOfBirth, String indexNumber) throws Exception {
         super(name, surname, dateOfBirth);
-        this.indexNumber = indexNumber;
+        setIndexNumber(indexNumber);
+    }
+
+    @Override
+    public void addLink(String roleName, String reverseRoleName, ObjectPlusPlus targetObject) throws Exception {
+        if (this.containTheRole(roleName) && roleName.equals(Roles.HOBBY) && this.getLinks(Roles.HOBBY).length>=maxHobbyNumber) throw  new Exception("too much hobbies");
+        addLink(roleName, reverseRoleName, targetObject, targetObject);
     }
 
     @Override
@@ -27,6 +38,19 @@ public class Student extends Person implements IStudent {
         this.indexNumber = indexNumber;
     }
 
+    public int getMaxHobbyNumber() {
+        return maxHobbyNumber;
+    }
+
+    public void setMaxHobbyNumber(int maxHobbyNumber) {
+        this.maxHobbyNumber = maxHobbyNumber;
+    }
+
+    private void setIndexNumber(String indexNumber) throws Exception {
+        if (allIndexNumbers.contains(indexNumber)) throw new Exception(String.format("Student with this index number %s already exist",indexNumber));
+        allIndexNumbers.add(indexNumber);
+        this.indexNumber = indexNumber;
+    }
 
     @Override
     public String getIndexNumber() {

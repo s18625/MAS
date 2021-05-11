@@ -33,7 +33,7 @@ public abstract class ObjectPlusPlus extends ObjectPlus implements Serializable 
         addLink(roleName, reverseRoleName, targetObject, qualifier, 2);
     }
 
-    public void addLink(String roleName, String reverseRoleName, ObjectPlusPlus targetObject) {
+    public void addLink(String roleName, String reverseRoleName, ObjectPlusPlus targetObject) throws Exception {
         addLink(roleName, reverseRoleName, targetObject, targetObject);
     }
 
@@ -71,6 +71,24 @@ public abstract class ObjectPlusPlus extends ObjectPlus implements Serializable 
         return links.containsKey(roleName);
     }
 
+    public boolean isLink(String roleName, ObjectPlusPlus targetObject) {
+        Map<Object, ObjectPlusPlus> objectLink;
+        if(!links.containsKey(roleName)) {
+            return false;
+        }
+        objectLink = links.get(roleName);
+        return objectLink.containsValue(targetObject);
+    }
+    public void addLink_subset(String roleName, String reverseRoleName, String
+            superRoleName, ObjectPlusPlus targetObject) throws Exception {
+        if(isLink(superRoleName, targetObject)) {
+            addLink(roleName, reverseRoleName, targetObject);
+        }
+        else {
+            throw new Exception("No link to the '" + targetObject + "' object in the ‚" + superRoleName + "' super role!");
+        }
+    }
+
     public ObjectPlusPlus getLinkedObject(String roleName, Object qualifier) throws Exception {
         Map<Object, ObjectPlusPlus> objectLinks;
         if (!links.containsKey(roleName)) {
@@ -102,6 +120,13 @@ public abstract class ObjectPlusPlus extends ObjectPlus implements Serializable 
 //        object.removeObjectFromExtent();
     }
 
+    public boolean anyLink(String roleName) {
+        if(!links.containsKey(roleName)) {
+            return false;
+        }
 
+        Map<Object, ObjectPlusPlus> links = this.links.get(roleName);
+        return links.size() > 0;
+    }
 
 }

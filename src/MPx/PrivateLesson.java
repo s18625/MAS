@@ -12,7 +12,7 @@ public class PrivateLesson extends ObjectPlusPlus implements Serializable {
     private final Coach coach;
     private final Student student;
 
-    public PrivateLesson(Integer grade, Double prizePerHour, Double time, LocalDate date, Coach coach, Student student, URL linkToLecture, String linkToRepository) {
+    public PrivateLesson(Integer grade, Double prizePerHour, Double time, LocalDate date, Coach coach, Student student, URL linkToLecture, String linkToRepository) throws Exception {
         super();
         this.grade = grade;
         this.prizePerHour = prizePerHour;
@@ -29,13 +29,13 @@ public class PrivateLesson extends ObjectPlusPlus implements Serializable {
 
     }
 
-    private void addTheoreticalPrivateLesson(URL linkToLecture) {
+    private void addTheoreticalPrivateLesson(URL linkToLecture) throws Exception {
         if (linkToLecture == null) return;
         TheoreticalPrivateLesson theoreticalPrivateLesson = new TheoreticalPrivateLesson(linkToLecture);
         this.addLink(Roles.TYPE_NAME_THEORETICAL, Roles.PRIVATE_LESSON, theoreticalPrivateLesson);
     }
 
-    private void addPracticalPrivateLesson(String linkToRepository) {
+    private void addPracticalPrivateLesson(String linkToRepository) throws Exception {
         if (linkToRepository == null) return;
         PracticalPrivateLesson practicalPrivateLesson = new PracticalPrivateLesson(linkToRepository);
         this.addLink(Roles.TYPE_NAME_PRACTICAL, Roles.PRIVATE_LESSON, practicalPrivateLesson);
