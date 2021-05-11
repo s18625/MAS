@@ -370,7 +370,6 @@ public class Main {
         privateLesson.showLinks(Roles.STUDENT, System.out);
         privateLesson.showLinks(Roles.COACH, System.out);
 
-
         privateLesson2.showLinks(Roles.STUDENT, System.out);
         privateLesson2.showLinks(Roles.COACH, System.out);
 
