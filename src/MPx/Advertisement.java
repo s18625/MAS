@@ -17,7 +17,7 @@ public class Advertisement extends ObjectPlusPlus implements Serializable {
     public static void createAPart(Student student,Advertisement advertisement) {
         try {
             if (student == null) throw new Exception("required object - student");
-            student.addPart(Roles.PART,Roles.WHOLE,advertisement);
+            student.addPart(Roles.PART, Roles.WHOLE, advertisement);
         } catch (Exception e) {
             e.printStackTrace();
         }

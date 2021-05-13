@@ -23,8 +23,8 @@ public class Student extends Person implements IStudent {
 
     @Override
     public void addLink(String roleName, String reverseRoleName, ObjectPlusPlus targetObject) throws Exception {
-        if (this.containTheRole(roleName) && roleName.equals(Roles.HOBBY) && this.getLinks(Roles.HOBBY).length>=maxHobbyNumber) throw  new Exception("too much hobbies");
-        addLink(roleName, reverseRoleName, targetObject, targetObject);
+        if (this.containTheRole(roleName) && roleName.equals(Roles.HOBBY) && this.getLinks(Roles.HOBBY).length>=maxHobbyNumber) throw  new Exception("too many hobbies");
+        super.addLink(roleName, reverseRoleName, targetObject, targetObject);
     }
 
     @Override

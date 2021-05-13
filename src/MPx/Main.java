@@ -2,6 +2,7 @@ package MPx;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -322,8 +323,8 @@ public class Main {
 
         System.out.println("ograniczenie unique \n");
 
-        var studentMP4unique = new Student("studentmp4", "mp4", LocalDate.of(2000, 3, 4),"s18625");
-        var studentMP4unique2 = new Student("studentmp4", "mp4", LocalDate.of(2000, 3, 4),"s18626");
+        var studentMP4unique = new Student("studentmp4", "mp4", LocalDate.of(2000, 3, 4), "s18625");
+        var studentMP4unique2 = new Student("studentmp4", "mp4", LocalDate.of(2000, 3, 4), "s18626");
 
         printBreakBlock();
 
@@ -336,10 +337,10 @@ public class Main {
         Subject ppj = new Subject("PPJ", "Podstawy Programowania w Javie");
 
         coachMP4OgraniczenieAtrybutu.addLink(Roles.PASS, Roles.IS_PASSED, ppj);
-        coachMP4OgraniczenieAtrybutu.addLink_subset(Roles.TEACH, Roles.IS_TEACHING_BY, Roles.PASS,ppj);
+        coachMP4OgraniczenieAtrybutu.addLink_subset(Roles.TEACH, Roles.IS_TEACHING_BY, Roles.PASS, ppj);
 
-        coachMP4OgraniczenieAtrybutu.showLinks(Roles.PASS,System.out);
-        coachMP4OgraniczenieAtrybutu.showLinks(Roles.TEACH,System.out);
+        coachMP4OgraniczenieAtrybutu.showLinks(Roles.PASS, System.out);
+        coachMP4OgraniczenieAtrybutu.showLinks(Roles.TEACH, System.out);
 
         printBreakBlock();
 
@@ -350,11 +351,21 @@ public class Main {
 
         System.out.println("ograniczenie ordered \n");
 
+        Hobby a = new Hobby("a");
+        Hobby b = new Hobby("b");
+        Hobby c = new Hobby("c");
+
+        studentMP4unique.addLink(Roles.HOBBY, Roles.STUDENT, a);
+        studentMP4unique.addLink(Roles.HOBBY, Roles.STUDENT, b);
+        studentMP4unique.addLink(Roles.HOBBY, Roles.STUDENT, c);
+
         var extent = ObjectPlus.getExtentOfClass(Student.class);
-        for (Student s: extent
-             ) {
+        for (Student s : extent
+        ) {
             System.out.println(s);
         }
+
+        studentMP4unique.showLinks(Roles.HOBBY, System.out);
 
         printBreakBlock();
 
@@ -364,8 +375,8 @@ public class Main {
 
         System.out.println("ograniczenie bag \n");
 
-        var privateLesson = new PrivateLesson(null, 25.0, 1.0, LocalDate.now(), coachMP4OgraniczenieAtrybutu, studentMP4unique,null,null);
-        var privateLesson2 = new PrivateLesson(null, 25.0, 1.0, LocalDate.now(), coachMP4OgraniczenieAtrybutu, studentMP4unique,null,null);
+        var privateLesson = new PrivateLesson(null, 25.0, 1.0, LocalDate.now(), coachMP4OgraniczenieAtrybutu, studentMP4unique, null, null,ppj);
+        var privateLesson2 = new PrivateLesson(null, 25.0, 5.0, LocalDate.now(), coachMP4OgraniczenieAtrybutu, studentMP4unique, null, null,ppj);
 
         privateLesson.showLinks(Roles.STUDENT, System.out);
         privateLesson.showLinks(Roles.COACH, System.out);
@@ -384,11 +395,10 @@ public class Main {
         Catholicism catholicism = Catholicism.getInstance("Francesco");
         Islam islam = Islam.getInstanceOfIslam(new BigInteger("16000000000"));
 
-        studentMP4unique.addLinkXor(Roles.PROFESS,Roles.IS_PROFESSED_BY,catholicism);
-//        studentMP4unique.addLinkXor(Roles.PROFESS,Roles.IS_PROFESSED_BY,islam);
+        studentMP4unique.addLinkXor(Roles.PROFESS_CATH, Roles.IS_PROFESSED_BY, catholicism);
+//        studentMP4unique.addLinkXor(Roles.PROFESS_ISLAM, Roles.IS_PROFESSED_BY, islam);
 
         printBreakBlock();
-
 
         //==============================================================================================================
         //  ograniczenie wlasne
@@ -396,14 +406,8 @@ public class Main {
 
         System.out.println("ograniczenie wlasne \n");
 
-        Hobby a = new Hobby("a");
-        Hobby b = new Hobby("b");
-        Hobby c = new Hobby("c");
         Hobby d = new Hobby("d");
 
-        studentMP4unique.addLink(Roles.HOBBY,Roles.STUDENT,a);
-        studentMP4unique.addLink(Roles.HOBBY,Roles.STUDENT,b);
-        studentMP4unique.addLink(Roles.HOBBY,Roles.STUDENT,c);
 //        studentMP4unique.addLink(Roles.HOBBY,Roles.STUDENT,d);
 
     }

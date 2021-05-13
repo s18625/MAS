@@ -20,7 +20,7 @@ public abstract class ObjectPlusPlus extends ObjectPlus implements Serializable 
         if (links.containsKey(roleName)) {
             objectLinks = links.get(roleName);
         } else {
-            objectLinks = new HashMap<>();
+            objectLinks = new LinkedHashMap<>();
             links.put(roleName, objectLinks);
         }
         if (!objectLinks.containsKey(qualifier)) {
@@ -96,7 +96,7 @@ public abstract class ObjectPlusPlus extends ObjectPlus implements Serializable 
         }
         objectLinks = links.get(roleName);
         if (!objectLinks.containsKey(qualifier)) {
-            throw new Exception("No link for the qualifer: " + qualifier);
+            throw new Exception("No link for the qualifier: " + qualifier);
         }
         return objectLinks.get(qualifier);
     }

@@ -16,7 +16,8 @@ public class Roles {
     public static final String IS_PASSED = "isPassed";
     public static final String TEACH = "teach";
     public static final String IS_TEACHING_BY = "isTeachingBY";
-    public static final String PROFESS = "profess";
+    public static final String PROFESS_ISLAM = "profess islam";
+    public static final String PROFESS_CATH = "profess catholicism";
     public static final String IS_PROFESSED_BY = "is professed by";
 
 }

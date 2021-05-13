@@ -67,7 +67,7 @@ public class Coach extends Person {
     }
 
     public void setHourPayment(double hourPayment) throws Exception {
-        if (hourPayment > 200.0){
+        if (hourPayment > maximalHourPayment){
             throw  new Exception(String.format("your hour payment - %.2fzł is to high by %.2fzł, maximal hour payment is %.2fzł",hourPayment,hourPayment-maximalHourPayment,maximalHourPayment));
         };
         this.hourPayment = hourPayment;
